@@ -54,3 +54,14 @@ storms %>%
   
 ```
 
+```{r}
+vegetation <- read_sf("doc.kml")
+  
+ggplot(data = vegetation) +
+  geom_sf(aes(fill=Name), color = NA) +
+  scale_fill_paletteer_d("palettetown::blastoise") +
+  theme_minimal()
+
+ggsave(filename = "my_awesome_map.jpg", width = 8 , height = 5)
+```
+
