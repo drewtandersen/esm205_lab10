@@ -1,0 +1,56 @@
+---
+title: "lab10"
+author: "Drew Andersen"
+date: "11/30/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(usethis)
+library(janitor)
+
+library(beepr)
+library(praise)
+library(cowsay)
+library(paletteer)
+library(sf)
+```
+
+Use the function `beep()' in the beepr package to make an alert when your code is done running. 
+
+```{r}
+beer = rev(seq(1:99))
+
+for (i in beer) {
+  print(paste(i, "bottles of beer on the wall"))
+}
+
+beep(4)
+```
+
+##praise and cowsay
+Packages built with a single purpose:to be kind and fun
+
+```{r}
+praise("${exclamation}...")
+```
+
+Use cowsay::say() to make a character say something to you
+
+## paletteer toa ccess thousands of color palettes
+
+```{r}
+storms %>% 
+  group_by(name) %>% 
+  summarize(min_pressure = min(pressure, na.rm = TRUE)) %>% 
+  slice_min(n = 10, min_pressure) %>% 
+  ggplot(aes(x = min_pressure, y = name)) +
+  geom_col(aes(fill=name)) +
+  scale_fill_paletteer_d("palettetown::jigglypuff")
+  
+  
+```
+
